@@ -112,6 +112,12 @@ class Primitive:
         elif self.valency == 2:
             return self.str + '(' + nodes_names[0] + ', ' + nodes_names[1] + ')'
 
+    def print_as_tree(self, depth=0):
+        print (" |" * depth, self.str)
+        for node in self.nodes:
+            node.print_as_tree(depth + 1)
+
+
 class Primitives:
     TF = Primitive(lambda x, y: x, 0, DOMAINS.POSITIVE, DOMAINS.POSITIVE, 'tf')
     IDF = Primitive(lambda x, y: y, 0, DOMAINS.POSITIVE, DOMAINS.POSITIVE, 'idf')
