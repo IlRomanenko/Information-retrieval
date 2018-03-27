@@ -1,5 +1,6 @@
 from metrics import compare
 from metrics import get_first_structural_distance
+from metrics import get_second_structural_distance
 import numpy as np
 from create_population import create_population
 
@@ -12,6 +13,7 @@ R = create_population(4, 10)
 
 for l in L:
 	l.print_as_tree()
+	print (l.get_str_representation())
 	print ("|")
 
 print ("if compare works, matrix should be id")
@@ -31,8 +33,17 @@ for l in L:
 	print ()
 
 
+print ("Max common subtree dist")
+
 for l in L:
 	for r in R:
 		print ("%.2d" % (get_first_structural_distance(l, r),), end=" ")
+	print ()
+
+print ("Levenshtein str dist")
+
+for l in L:
+	for r in R:
+		print ("%.2d" % (get_second_structural_distance(l, r),), end=" ")
 	print ()
 

@@ -117,6 +117,15 @@ class Primitive:
         for node in self.nodes:
             node.print_as_tree(depth + 1)
 
+    def get_str_representation(self):
+        ans = str(self.str[0])
+
+        for node in self.nodes:
+            tmp = node.get_str_representation()
+            ans += tmp
+
+        return ans
+
 
 class Primitives:
     TF = Primitive(lambda x, y: x, 0, DOMAINS.POSITIVE, DOMAINS.POSITIVE, 'tf')
@@ -127,7 +136,8 @@ class Primitives:
     DIV = Primitive(np.divide, 2, DOMAINS.TWICE_REAL, DOMAINS.TWICE_REAL, 'divide')
     LOG = Primitive(lambda x: np.log10(1+x), 1, DOMAINS.POSITIVE, DOMAINS.REAL, 'log')
     EXP = Primitive(np.exp, 1, DOMAINS.REAL, DOMAINS.POSITIVE, 'exp')
-    SQRT = Primitive(np.sqrt, 1, DOMAINS.POSITIVE, DOMAINS.POSITIVE, 'sqrt')
+    # big S is actual in case that first letter is short name
+    SQRT = Primitive(np.sqrt, 1, DOMAINS.POSITIVE, DOMAINS.POSITIVE, 'Sqrt')
     
 PRIMITIVES = [ 
     Primitives.TF,
