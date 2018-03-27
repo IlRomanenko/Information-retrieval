@@ -78,12 +78,13 @@ def test(doc_ranks, queries, query_characteristics):
     quality = rank_population([tmodel], doc_ranks, queries, query_characteristics)
     print(quality)
 
-def learn_population(population, doc_ranks, queries, query_characteristics):
+def learn_population(population, doc_ranks, queries, \
+            query_characteristics, visualize=None, iterations=100):
     reit_ = 1e9
     last_reit = 1e9
     SIMILARITY = 1e-5
 
-    for iteration in range(1000):
+    for iteration in range(iterations):
         new_population = []
         
         sz = len(population)
@@ -120,4 +121,7 @@ def learn_population(population, doc_ranks, queries, query_characteristics):
         ids = np.unique(ids)
         population = [population[i] for i in range(100 + len(ids)) if i not in ids]
         
+        if visualize is not None:
+            visualize(population, values)
+
         print(-values[0])

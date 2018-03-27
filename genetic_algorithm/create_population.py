@@ -22,7 +22,8 @@ def create_population(size, max_depth):
             model.calc_domains()
             population.append(model)
         except primitive.DomainException as e:
-            print(e)
+            # TODO: print blank line ???
+            #print(e)
             pass
         
     return population

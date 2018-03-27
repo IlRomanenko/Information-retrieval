@@ -46,7 +46,7 @@ def get_quality(model, doc_ranks, queries, query_characteristics):
         quality = evaluate_quality(query_id, doc_related, doc_ranks[i])
         vec_quality.append(quality)
     
-    print(np.sum(np.round(vec_quality, 4)))
+    #print(np.sum(np.round(vec_quality, 4)))
 
     quality = np.sum(vec_quality)
 

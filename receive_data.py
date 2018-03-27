@@ -121,13 +121,13 @@ def loadData(trecks):
     stop = True
     return (mat_doc_ranks, queries, modelCharacteristics, )
 
-doc_ranks, queries, query_characteristics = loadData(6)
+#doc_ranks, queries, query_characteristics = loadData(6)
 
 
 
 # learn_population.test(doc_ranks, queries, query_characteristics)
 
 
-population = create_population.create_population(10, 10)
-learn_population.learn_population(population, doc_ranks, queries, query_characteristics)
+#population = create_population.create_population(10, 10)
+#learn_population.learn_population(population, doc_ranks, queries, query_characteristics)
 
