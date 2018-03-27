@@ -29,14 +29,17 @@ class Primitive:
         self.codomain = codomain
         self.str = string
 
+
     def add_nodes(self, nodes):
         self.nodes = nodes
         return self
+
 
     def calc(self, x, y):
         if self.valency == 0:
             return self.func(x, y)
         return self.func(*[node.calc(x, y) for node in self.nodes])
+
 
     def calc_domains(self):
         nodes_domains = [node.calc_domains() for node in self.nodes]
@@ -85,11 +88,13 @@ class Primitive:
 
         return self.codomain
 
+
     def get_tokens(self):
         if self.valency == 0:
             return 1
         return 1 + np.sum([node.get_tokens() for node in self.nodes])
     
+
     def get_kth(self, n):
         i = 0
         while self.nodes[i].get_tokens() <= n:
@@ -99,10 +104,12 @@ class Primitive:
             return self, i
         return self.nodes[i].get_kth(n - 1)
         
+
     def get_random(self):
         rnd = np.random.randint(0, self.get_tokens() - 1)
         return self.get_kth(rnd)
     
+
     def __str__(self):
         nodes_names = [str(node) for node in self.nodes]
         if self.valency == 0:
@@ -112,10 +119,12 @@ class Primitive:
         elif self.valency == 2:
             return self.str + '(' + nodes_names[0] + ', ' + nodes_names[1] + ')'
 
+
     def print_as_tree(self, depth=0):
         print (" |" * depth, self.str)
         for node in self.nodes:
             node.print_as_tree(depth + 1)
+
 
     def get_str_representation(self):
         ans = str(self.str[0])
@@ -125,6 +134,20 @@ class Primitive:
             ans += tmp
 
         return ans
+
+
+    def get_height(self):
+        max_ = 0
+        for node in self.nodes:
+            max_ = max(max_, node.get_height())
+        return max_ + 1
+
+
+    def get_number_of_leaves(self):
+        if len(self.nodes) == 0:
+            return 1
+        return sum([node.get_number_of_leaves() for node in self.nodes])
+
 
 
 class Primitives:

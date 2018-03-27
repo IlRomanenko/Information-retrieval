@@ -5,7 +5,6 @@ import numpy as np
 from create_population import create_population
 
 
-
 np.random.seed(42)
 L = create_population(4, 10)
 np.random.seed(42)

@@ -63,3 +63,4 @@ def get_second_structural_distance(p1, p2):
     w1 = p1.get_str_representation()
     w2 = p2.get_str_representation()
     return leven_dist(w1, w2)
+
