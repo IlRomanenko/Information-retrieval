@@ -54,7 +54,7 @@ class Primitive:
 
         elif self.valency == 2:
             
-            # TODO избавиться от switch
+            # TODO remove/resolve switch
             fr, sc = nodes_domains
 
             if self.func == np.add:
@@ -68,7 +68,7 @@ class Primitive:
 
             elif self.func == np.divide:
                 
-                # TODO сделать честное вычисление
+                # TODO do true calculation
 
                 vars = np.array([fr.low * sc.low, fr.low * sc.high, fr.high * sc.low, fr.high * sc.high])
                 vars = vars[vars == vars] # TODO bug
