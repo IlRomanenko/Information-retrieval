@@ -6,9 +6,9 @@ import sys
 import os
 CUR_DIR = os.path.dirname(os.path.abspath(__file__)) + "/"
 
-sys.path.append(CUR_DIR + 'genetic_algorithm')
-from genetic_algorithm import create_population, learn_population
-
+sys.path.append(CUR_DIR + 'genetic_algorithm/')
+from learn_population import  learn_population
+from create_population import create_population
 
 def loadRanks(trecks):
     filename = CUR_DIR + 'Data/ranks' + str(trecks) + '.txt'
