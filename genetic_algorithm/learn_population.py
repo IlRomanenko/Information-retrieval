@@ -8,16 +8,16 @@ from crossover import crossfit
 from create_population import create_random_model
 from primitive import Primitives
 
-def rank_population(population, doc_ranks, queries, query_characteristics):   
+def rank_population(population, queries):   
 
     qualities = []
     for model in population:
-        quality = get_quality(model, doc_ranks, queries, query_characteristics)
+        quality = get_quality(model, queries)
         qualities.append(quality)
 
     return qualities
 
-def test(doc_ranks, queries, query_characteristics):
+def test(queries):
     tmodel = deepcopy(Primitives.SQRT).add_nodes([
         deepcopy(Primitives.SQRT).add_nodes([
             deepcopy(Primitives.EXP).add_nodes([
@@ -75,11 +75,10 @@ def test(doc_ranks, queries, query_characteristics):
     # ])
     
     print(str(tmodel))
-    quality = rank_population([tmodel], doc_ranks, queries, query_characteristics)
+    quality = rank_population([tmodel], queries)
     print(quality)
 
-def learn_population(population, doc_ranks, queries, \
-            query_characteristics, visualize=None, iterations=100):
+def learn_population(population, queries, visualize=None, iterations=100):
     reit_ = 1e9
     last_reit = 1e9
     SIMILARITY = 1e-5
@@ -103,7 +102,7 @@ def learn_population(population, doc_ranks, queries, \
             new_population.append(mutate_rand_tree(crossfit(t1, t2)))
         
         population = np.array(population + new_population)
-        values = rank_population(population, doc_ranks, queries, query_characteristics)
+        values = rank_population(population, queries)
         values = np.array(values)
         
         indexes = np.arange(len(population))
